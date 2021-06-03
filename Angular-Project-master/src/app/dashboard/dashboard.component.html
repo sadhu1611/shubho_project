@@ -1,0 +1,49 @@
+<input type="text" placeholder="search books by name and hit search" [(ngModel)]='search'>
+
+<button (click)='onSearch()'>search</button>
+
+<div *ngIf='!searchPage' class='container' >
+<div   class='cards' *ngFor='let book of books' >
+Name:{{book.name}}
+<br/>
+Title:{{book.title}}
+<br/>
+Author:{{book.author}}
+<br/>
+<button (click)='onDelete(book)'>delete</button>
+<button (click)='onUpdate(book)' >update</button>
+<a [routerLink]="['/details', book.id]">details</a>
+</div>
+
+<div class='my-modal' *ngIf='update_modal'>
+    <label>
+        Name: <input type='text'  [(ngModel)]='Name'>
+        Title: <input type='text'  [(ngModel)]='Title'>
+        Author: <input type='text'  [(ngModel)]='Author' >
+    </label>
+    <button (click)='onCancel()'>Cancel</button>
+    <button (click)='onEdit()'>Edit</button>
+</div>
+
+<div class='my-modal' *ngIf='delete_modal'>
+    <h4>Do you want to delete?</h4>
+    <button (click)='onCancel()'>Cancel</button>
+    <button (click)='onConfirm()'>Confirm</button>
+</div>
+
+</div>
+
+<div #searchDiv *ngIf='searchPage'> 
+    <a  (click)='goBack()'>go back</a>
+<div  class="containers">
+
+<div class='cards'  *ngFor='let book of searchedBooks'>
+    Name:{{book.name}}
+    <br/>
+    Title:{{book.title}}
+    <br/>
+    Author:{{book.author}}
+    <br/>
+</div>
+</div>
+</div>
