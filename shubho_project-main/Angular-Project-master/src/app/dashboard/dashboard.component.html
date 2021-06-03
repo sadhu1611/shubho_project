@@ -1,0 +1,68 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="styles.css">
+
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">My Library</a>
+  
+  <form class="form-inline my-2 my-lg-0">
+    <input type="text" class="form-control mr-sm-2" type="search" placeholder="search books by name" aria-label="Search" [(ngModel)]='search'>
+    <button class="btn btn-outline-success my-2 my-sm-0" (click)='onSearch()' type="submit">Search</button>
+  </form>
+
+</nav>
+
+
+<!-- <button (click)='onSearch()'>search</button> -->
+
+<div *ngIf='!searchPage' class='container-fluid' >
+
+<div   class='card book-tile' style="width: 18rem" *ngFor='let book of books' >
+<div class="card-body">
+    <label><strong>Name:  </strong>{{book.name}}</label>
+    <br/>
+     <label><strong>Title: </strong>{{book.title}}</label>
+    <br/>
+    <label><strong>Author: </strong>{{book.author}}</label>
+    <br/>
+    <button (click)='onDelete(book)' class="btn btn-danger">Delete</button>
+    <button (click)='onUpdate(book)' class="btn btn-success" >Udate</button>
+<a class="btn btn-info"  style="color: white;" [routerLink]="['/details', book.id]">Details</a>    
+</div>
+</div>
+
+<div class='card my-modal book-update-tile' *ngIf='update_modal'>
+    <center><p class="h3">Update Book</p></center>
+    <div class="card-body">
+        <label><strong>Name:</strong>   <input type='text'  [(ngModel)]='Name'> </label><br>
+        <label><strong>Title:</strong></label>  <input type='text'  [(ngModel)]='Title'>  <br>
+        <label><strong>Author:</strong> <input type='text'  [(ngModel)]='Author' ></label> <br>
+        <button class="btn btn-danger" (click)='onCancel()'>Cancel</button>
+        <button class="btn btn-primary" (click)='onEdit()'>Edit</button>
+    </div>
+</div>
+
+<div class='card my-modal book-delete-tile' *ngIf='delete_modal'>
+    <div class="card-body">
+        <p class="h4">Do you want to delete?</p>
+        <button class="btn btn-danger" (click)='onCancel()'>Cancel</button>
+        <button class="btn btn-primary" (click)='onConfirm()'>Confirm</button>
+    </div>
+</div>
+
+</div>
+
+
+<!-- <div class='cards'  *ngFor='let book of searchedBooks'>
+    Name:{{book.name}}
+    <br/>
+    Title:{{book.title}}
+    <br/>
+    Author:{{book.author}}
+    <br/>
+</div> -->
+
+<footer >
+    <div id="footer" #searchDiv *ngIf='searchPage'> 
+        <a  class="btn btn-dark" style="color: white; width: 100%;" (click)='goBack()'><p> Go Back</p></a>
+    </div>
+</footer>

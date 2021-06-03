@@ -1,0 +1,27 @@
+.card{
+ margin: 20px 20px;
+}
+
+.book-tile,.book-delete-tile,.book-update-tile{
+    box-sizing: border-box;
+    border: none;
+    background-color: aqua;
+    border-radius: 5%;
+
+}
+
+.book-update-tile{
+    width: max-content;
+    padding-top: 20px;
+}
+.book-delete-tile{
+    width: fit-content;
+}
+
+#footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    
+}
